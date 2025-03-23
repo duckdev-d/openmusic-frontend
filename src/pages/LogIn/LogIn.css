@@ -1,0 +1,22 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrap {
+    background: #141414d7;
+    border-radius: 1.5vw;
+    width: 38vw;
+    height: 43vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-account {
+    display: flex;
+    gap: 0.5vw;
+}

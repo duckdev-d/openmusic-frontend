@@ -1,0 +1,12 @@
+button {
+    border-radius: 0.5vw;
+    color: black;
+    background: #d6d6d6;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.primary-btn-wrap {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,16 @@
+input {
+    background: #181818;
+    color: white;
+    border: none;
+    border-radius: 0.5vw;
+    outline: 0.1vw solid #5C5C5C;
+    z-index: 1000000;
+}
+
+input:focus {
+    outline: 0.2vw solid #5C5C5C;
+}
+
+.input-wrap {
+    text-align: center;
+}
