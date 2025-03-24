@@ -7,12 +7,13 @@ interface Props {
     children?: React.ReactNode,
     mBottom?: string,
     fontSize?: string,
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-export default function PrimaryButton({height, width, children, mBottom, fontSize='1vw'}: Props) {
+export default function PrimaryButton({height, width, children, mBottom, fontSize='1vw', onClick}: Props) {
   return (
     <div className='primary-btn-wrap'>
-        <button style={{width: width, height: height, marginBottom: mBottom, fontSize: fontSize}}>{children}</button>
+        <button onClick={onClick} style={{width: width, height: height, marginBottom: mBottom, fontSize: fontSize}}>{children}</button>
     </div>
   )
 }

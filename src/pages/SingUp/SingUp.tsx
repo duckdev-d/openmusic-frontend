@@ -7,8 +7,11 @@ import Field from '../../components/Field/Field'
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 import Link from '../../components/Link/Link'
 import './SingUp.css'
+import { useState } from 'react'
 
 function SignUpPage() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   return (
     <>
@@ -20,11 +23,11 @@ function SignUpPage() {
       <Line color="white" width="23vw" height="0.2vw" mBottom="2vw"/>
       <Text size="2vw" weight="bold" mBottom="4vw">Sign up to OpenMusic</Text>
 
-      <form action="" method="post">
+      <form>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a username</SecondaryText>
-        <Field height="2.5vw" width="21vw" name="username" mBottom="1vw"></Field>
+        <Field height="2.5vw" width="21vw" value={username} setValue={setUsername} mBottom="1vw"></Field>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a password</SecondaryText>
-        <Field height="2.5vw" width="21vw" name="password" mBottom="4vw" type='password'></Field>
+        <Field height="2.5vw" width="21vw" value={password} setValue={setPassword} mBottom="4vw" type='password'></Field>
         <PrimaryButton height="3.2vw" width="21vw" mBottom="2vw" fontSize="1.3vw">Countinue</PrimaryButton>
       </form>
 
