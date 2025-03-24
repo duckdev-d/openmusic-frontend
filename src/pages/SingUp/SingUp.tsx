@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import Line from '../../components/Line/Line'
 import Logo from '../../components/Logo/Logo'
 import Blur from '../../components/Blur/Blur'
@@ -6,10 +9,22 @@ import SecondaryText from '../../components/SecondaryText/SecondaryText'
 import Field from '../../components/Field/Field'
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 import Link from '../../components/Link/Link'
+import { logIn, signUp } from '../../services/auth'
+
 import './SingUp.css'
-import { useState } from 'react'
+
 
 function SignUpPage() {
+  const navigate = useNavigate()
+
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    signUp(username, password)
+    logIn(username, password)
+    navigate('/home')
+  }
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -23,7 +38,7 @@ function SignUpPage() {
       <Line color="white" width="23vw" height="0.2vw" mBottom="2vw"/>
       <Text size="2vw" weight="bold" mBottom="4vw">Sign up to OpenMusic</Text>
 
-      <form>
+      <form onSubmit={handleFormSubmit}>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a username</SecondaryText>
         <Field height="2.5vw" width="21vw" value={username} setValue={setUsername} mBottom="1vw"></Field>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a password</SecondaryText>
@@ -40,5 +55,6 @@ function SignUpPage() {
     </>
   )
 }
+
 
 export default SignUpPage

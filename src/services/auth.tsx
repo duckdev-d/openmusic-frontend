@@ -22,3 +22,24 @@ export function logIn(username: string, password: string) {
   }
   ) 
 }
+
+
+export function signUp(username: string, password: string) {
+
+  const API_URL = import.meta.env.VITE_API_URL
+  const url = `${API_URL}/users`
+
+  const formData = {
+    username: username,
+    password: password,
+  }
+
+  axios.post<{access_token: string}>(url, formData, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  .catch(error => {
+    console.log('could not create account')
+  });
+}
