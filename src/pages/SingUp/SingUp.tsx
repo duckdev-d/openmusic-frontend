@@ -24,7 +24,7 @@ function SignUpPage() {
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a username</SecondaryText>
         <Field height="2.5vw" width="21vw" name="username" mBottom="1vw"></Field>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Create a password</SecondaryText>
-        <Field height="2.5vw" width="21vw" name="password" mBottom="4vw"></Field>
+        <Field height="2.5vw" width="21vw" name="password" mBottom="4vw" type='password'></Field>
         <PrimaryButton height="3.2vw" width="21vw" mBottom="2vw" fontSize="1.3vw">Countinue</PrimaryButton>
       </form>
 

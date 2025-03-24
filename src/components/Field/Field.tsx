@@ -7,15 +7,16 @@ interface Props {
     name: string,
     mBottom?: string,
     fontSize?: string,
+    type?: string,
 }
 
-export default function Field({height, width, name, mBottom='0', fontSize='1.5vw'}: Props) {
+export default function Field({height, width, name, mBottom='0', fontSize='1.5vw', type='text'}: Props) {
   const [value, setValue] = useState('')
 
   return (
     <div className='input-wrap'>
       <input 
-        type="text" 
+        type={type} 
         name={name} 
         value={value}
         id="" 
