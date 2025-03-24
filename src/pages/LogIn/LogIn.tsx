@@ -1,3 +1,7 @@
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 import Line from '../../components/Line/Line'
 import Logo from '../../components/Logo/Logo'
 import Blur from '../../components/Blur/Blur'
@@ -6,37 +10,18 @@ import SecondaryText from '../../components/SecondaryText/SecondaryText'
 import Field from '../../components/Field/Field'
 import PrimaryButton from '../../components/PrimaryButton/PrimaryButton'
 import Link from '../../components/Link/Link'
+import { logIn } from '../../services/auth'
 import './LogIn.css'
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 
 function LoginPage() {
   const navigate = useNavigate()
 
-  function logIn(e: React.FormEvent<HTMLFormElement>) {
+  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    const API_URL = import.meta.env.VITE_API_URL
-    const url = `${API_URL}/token`
-
-    const formData = new URLSearchParams()
-    formData.append('username', username)
-    formData.append('password',password)
-
-    axios.post<{access_token: string}>(url, formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-    })
-    
-    .then(response => {
-      const jwt = response.data.access_token
-      localStorage.setItem('jwt', jwt)
-      navigate('/home')
-    }
-    ) 
+    logIn(username, password)
+    navigate('/home')
   }
 
   const [username, setUsername] = useState('')
@@ -52,7 +37,7 @@ function LoginPage() {
       <Line color="white" width="23vw" height="0.2vw" mBottom="2vw"/>
       <Text size="2vw" weight="bold" mBottom="4vw">Log in to OpenMusic</Text>
 
-      <form onSubmit={logIn}>
+      <form onSubmit={handleFormSubmit}>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Username</SecondaryText>
         <Field height="2.5vw" width="21vw" value={username} setValue={setUsername} mBottom="1vw"></Field>
         <SecondaryText size="1.3vw" mBottom="0.5vw">Password</SecondaryText>
