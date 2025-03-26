@@ -1,0 +1,7 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  background: #141414;
+  align-items: center;
+  justify-content: center;
+}

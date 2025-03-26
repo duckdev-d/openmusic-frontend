@@ -1,0 +1,11 @@
+.app {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+
+.current-page {
+  background: #141414;
+  width: 92vw;
+  border-radius: 1vw;
+}
