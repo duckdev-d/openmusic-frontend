@@ -7,5 +7,10 @@
 .current-page {
   background: #141414;
   width: 92vw;
+  height: 95vh;
   border-radius: 1vw;
+  padding: 3vw;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
