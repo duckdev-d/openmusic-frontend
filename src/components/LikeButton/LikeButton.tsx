@@ -19,7 +19,7 @@ export default function LikeButton({ width }: Props) {
 
   return (
     <div onClick={handleClick} style={{ cursor: "pointer" }}>
-      <img width={width} src={image} alt="" />
+      <img draggable="false" width={width} src={image} alt="" />
     </div>
   );
 }
