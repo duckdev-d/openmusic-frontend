@@ -1,3 +1,19 @@
 .home {
   border-radius: inherit;
 }
+
+.playlists-wrap {
+  display: flex;
+  gap: 1.6vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  margin-bottom: 3vw;
+}
+
+.songs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+}
