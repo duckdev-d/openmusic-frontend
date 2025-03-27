@@ -1,0 +1,11 @@
+.cover {
+  background: #262626;
+  position: relative;
+  margin-bottom: 0.5vw;
+}
+
+.playlist-btn {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;
+}
