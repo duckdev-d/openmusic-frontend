@@ -50,7 +50,7 @@ export default function Menu({
       }}
     >
       {menuItems.map(({ path, activeIcon, disabledIcon }) => (
-        <NavLink key={path} to={path}>
+        <NavLink draggable="false" key={path} to={path}>
           {({ isActive }) => (
             <img
               src={isActive ? activeIcon : disabledIcon}
