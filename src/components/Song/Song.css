@@ -1,0 +1,8 @@
+.song {
+  display: flex;
+  position: relative;
+  background: #1f1f1f96;
+}
+.song:hover {
+  background: #25252596;
+}
