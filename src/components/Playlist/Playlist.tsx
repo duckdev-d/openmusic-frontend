@@ -20,7 +20,7 @@ export default function Playlist({
   return (
     <div className="playlists">
       <div
-        className="cover"
+        className="playlist-cover"
         style={{
           width: width,
           height: width,
