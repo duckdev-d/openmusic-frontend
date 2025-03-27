@@ -1,11 +1,11 @@
-@import url('./fonts.css');
+@import url("./fonts.css");
 
 #root {
-  font-family: 'SF Pro';
+  font-family: "SF Pro";
   background: #000;
   color: white;
   min-width: 100vw;
   min-height: 100vh;
-  position: fixed;
   z-index: -100;
+  user-select: none;
 }
