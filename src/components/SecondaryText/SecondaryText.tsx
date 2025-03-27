@@ -1,17 +1,34 @@
-import React from "react"
+import React from "react";
 
 interface Props {
-    size: string,
-    weight?: string,
-    color?: string,
-    children?: React.ReactNode,
-    mBottom?: string,
+  size: string;
+  weight?: string;
+  color?: string;
+  children?: React.ReactNode;
+  mBottom?: string;
+  className?: string;
 }
 
-export default function SecondaryText({size, weight='normal', color='rgb(192, 192, 192)', children, mBottom}: Props) {
+export default function SecondaryText({
+  size,
+  weight = "normal",
+  color = "rgb(192, 192, 192)",
+  children,
+  mBottom,
+  className,
+}: Props) {
   return (
-    <div className='secondary-text'>
-        <p style={{fontSize: size, fontWeight: weight, color: color, marginBottom: mBottom}}>{children}</p>
+    <div className={className}>
+      <p
+        style={{
+          fontSize: size,
+          fontWeight: weight,
+          color: color,
+          marginBottom: mBottom,
+        }}
+      >
+        {children}
+      </p>
     </div>
-  )
+  );
 }

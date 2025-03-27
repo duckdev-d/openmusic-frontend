@@ -25,7 +25,12 @@ export default function ImageButton({
   }
 
   return (
-    <div id="image-btn" className={className} onClick={handleButtonClick}>
+    <div
+      id="image-btn"
+      className={className}
+      onClick={handleButtonClick}
+      style={{ cursor: "pointer" }}
+    >
       <img draggable="false" src={image} alt="" style={{ width: width }} />
     </div>
   );
