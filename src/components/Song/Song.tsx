@@ -68,7 +68,7 @@ export default function Song({
         <SecondaryText className="song-duration" size="1vw">
           {duration}
         </SecondaryText>
-        <LikeButton width="25vw" />
+        <LikeButton width="30vw" />
       </div>
     </div>
   );
