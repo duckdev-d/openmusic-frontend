@@ -26,10 +26,10 @@ export default function FavouritesPage() {
     <div className="favourites">
       <PlaylistHeader
         title="Liked songs"
-        titleFontSize="3vw"
+        titleFontSize="2.5vw"
         numberOfSongs="15"
-        secondaryFontSize="1.7vw"
-        coverWidth="10vw"
+        secondaryFontSize="1.5vw"
+        coverWidth="8vw"
         includeLikeButton={false}
         marginBottom="1.5vw"
       />
