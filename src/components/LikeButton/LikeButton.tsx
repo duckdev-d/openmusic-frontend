@@ -1,5 +1,5 @@
 import { useState } from "react";
-import heartOn from "../../assets/favourites-primary.svg";
+import heartOn from "../../assets/heart-white.svg";
 import heartOff from "../../assets/favourites-secondary.svg";
 
 interface Props {
