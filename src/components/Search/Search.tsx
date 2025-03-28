@@ -1,8 +1,20 @@
 interface Props {
   width: string;
+  fontSize: string;
+  paddingTop: string;
+  paddingBottom: string;
+  paddingLeft: string;
+  paddingRight: string;
 }
 
-export default function Search({ width }: Props) {
+export default function Search({
+  width,
+  fontSize,
+  paddingBottom,
+  paddingLeft,
+  paddingRight,
+  paddingTop,
+}: Props) {
   return (
     <div className="search-input" style={{ width: width }}>
       <input
@@ -10,11 +22,11 @@ export default function Search({ width }: Props) {
         placeholder="Search..."
         style={{
           width: width,
-          fontSize: "160%",
-          paddingTop: "2%",
-          paddingBottom: "2%",
-          paddingLeft: "3%",
-          paddingRight: "3%",
+          fontSize: fontSize,
+          paddingTop: paddingTop,
+          paddingBottom: paddingBottom,
+          paddingLeft: paddingLeft,
+          paddingRight: paddingRight,
           outline: "none",
           background: "#202020",
           borderRadius: "50px",
