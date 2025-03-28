@@ -68,7 +68,10 @@ export default function HomePage() {
         Recently listened
       </PrimaryText>
 
-      <div className="songs">
+      <div
+        className="songs"
+        style={{ display: "flex", flexWrap: "wrap", gap: "0.7vw" }}
+      >
         {songsHistory.map(({ title, artist, duration }) => (
           <Song
             coverWidth="3vw"
