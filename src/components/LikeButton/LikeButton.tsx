@@ -4,10 +4,10 @@ import heartOff from "../../assets/favourites-secondary.svg";
 
 interface Props {
   width: string;
-  visibility: "visible" | "hidden";
+  visibility?: "visible" | "hidden";
 }
 
-export default function LikeButton({ width, visibility }: Props) {
+export default function LikeButton({ width, visibility = "visible" }: Props) {
   const [image, setImage] = useState(heartOff);
 
   function handleClick(e: React.MouseEvent) {
