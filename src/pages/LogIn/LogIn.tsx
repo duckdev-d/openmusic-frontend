@@ -28,8 +28,8 @@ function LoginPage() {
 
   return (
     <>
-      <Blur width="35vw" mLeft="15vw" mTop="-15vw"></Blur>
-      <Blur width="35vw" mLeft="-15vw" mTop="15vw"></Blur>
+      <Blur width="30vw" mLeft="17vw" mTop="-5vw"></Blur>
+      <Blur width="30vw" mLeft="-17vw" mTop="16vw"></Blur>
 
       <div className="form-wrap">
         <Logo width="6vw" mBottom="2vw" />
