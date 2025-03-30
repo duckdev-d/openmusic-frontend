@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import Line from "../../components/Line/Line";
 import Logo from "../../components/Logo/Logo";
@@ -16,11 +15,15 @@ import "./LogIn.css";
 function LoginPage() {
   const navigate = useNavigate();
 
-  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    logIn(username, password);
-    navigate("/home");
+    try {
+      await logIn(username, password);
+      navigate("/home");
+    } catch (error) {
+      alert("Could not validate credentials");
+    }
   }
 
   const [username, setUsername] = useState("");

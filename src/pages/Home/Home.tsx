@@ -50,7 +50,7 @@ export default function HomePage() {
   return (
     <div className="home">
       <PrimaryText size="2vw" weight="bold" mBottom="1.3vw">
-        For you
+        Playlists for you
       </PrimaryText>
 
       <div className="playlists-wrap">
@@ -65,7 +65,7 @@ export default function HomePage() {
       </div>
 
       <PrimaryText size="2vw" weight="bold" mBottom="1.3vw">
-        Recently listened
+        Songs for you
       </PrimaryText>
 
       <div
