@@ -7,16 +7,17 @@ import FavouritesPage from "./pages/Favourites/Favourites";
 import PlaylistsPage from "./pages/Playlists/Playlists";
 import Menu from "./components/Menu/Menu";
 import "./App.css";
+import PlayerBar from "./components/PlayerBar/PlayerBar";
 
 function App() {
   const location = useLocation();
 
-  const hideMenu =
+  const notAppPage =
     location.pathname === "/login" || location.pathname === "/signup";
 
   return (
     <div className="app">
-      {!hideMenu && (
+      {!notAppPage && (
         <Menu
           iconWidth="1.7vw"
           height="95vh"
@@ -26,7 +27,7 @@ function App() {
         />
       )}
 
-      {!hideMenu ? (
+      {!notAppPage ? (
         <div className="current-page">
           <Routes>
             <Route path="/home" element={<HomePage />} />
@@ -41,6 +42,8 @@ function App() {
           <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       )}
+
+      {!notAppPage ? <PlayerBar /> : <></>}
     </div>
   );
 }
