@@ -34,7 +34,7 @@ export default function FavouritesPage() {
         secondaryFontSize="1.5vw"
         coverWidth="8vw"
         includeLikeButton={false}
-        marginBottom="1.5vw"
+        marginBottom="3vw"
       />
 
       <Line
@@ -42,7 +42,7 @@ export default function FavouritesPage() {
         height="0.3vw"
         borderRadius="10px"
         color="#3D3D3D"
-        mBottom="1.5vw"
+        mBottom="3vw"
       />
 
       <div
