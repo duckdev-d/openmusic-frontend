@@ -58,3 +58,21 @@ export async function addSongToFavourites(songId: number) {
 
   return response.data;
 }
+
+export async function searchSongs(query: string) {
+  const url = `${API_URL}/songs/search?search_string=${query}`;
+  const jwt = localStorage.getItem("jwt");
+
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+
+  if (!(response.status === 200)) {
+    throw new Error();
+  }
+
+  return response.data;
+}
