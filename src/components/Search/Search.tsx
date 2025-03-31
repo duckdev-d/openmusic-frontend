@@ -5,6 +5,9 @@ interface Props {
   paddingBottom: string;
   paddingLeft: string;
   paddingRight: string;
+  value?: string;
+  setValue: (value: string) => void;
+  marginBottom?: string;
 }
 
 export default function Search({
@@ -14,11 +17,21 @@ export default function Search({
   paddingLeft,
   paddingRight,
   paddingTop,
+  value = "",
+  setValue,
+  marginBottom,
 }: Props) {
   return (
-    <div className="search-input" style={{ width: width }}>
+    <div
+      className="search-input"
+      style={{ width: width, marginBottom: marginBottom }}
+    >
       <input
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
         type="text"
+        value={value}
         placeholder="Search..."
         style={{
           width: width,
