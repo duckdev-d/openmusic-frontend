@@ -1,6 +1,7 @@
 import LikeButton from "../LikeButton/LikeButton";
 import PrimaryText from "../PrimaryText/PrimaryText";
 import SecondaryText from "../SecondaryText/SecondaryText";
+import { addSongToFavourites } from "../../services/api";
 import "./Song.css";
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
   artist?: string;
   duration?: string;
   padding?: string;
+  id?: number;
 }
 
 export default function Song({
@@ -19,6 +21,7 @@ export default function Song({
   artist = "artist",
   duration = "2:25",
   padding = "1vw",
+  id = 0,
 }: Props) {
   return (
     <div
@@ -68,7 +71,12 @@ export default function Song({
         <SecondaryText className="song-duration" size="1vw">
           {duration}
         </SecondaryText>
-        <LikeButton width="30vw" />
+        <LikeButton
+          width="30vw"
+          onClick={() => {
+            addSongToFavourites(id);
+          }}
+        />
       </div>
     </div>
   );
