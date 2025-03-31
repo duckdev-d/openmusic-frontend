@@ -12,13 +12,13 @@ import PlayerBar from "./components/PlayerBar/PlayerBar";
 function App() {
   const location = useLocation();
 
-  const jwt = localStorage.getItem("jwt");
-  if (jwt === null) {
-    window.location.href = "/login";
-  }
-
   const notAppPage =
     location.pathname === "/login" || location.pathname === "/signup";
+
+  const jwt = localStorage.getItem("jwt");
+  if (jwt === null && !notAppPage) {
+    window.location.href = "/login";
+  }
 
   return (
     <div className="app">
