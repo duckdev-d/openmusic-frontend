@@ -1,7 +1,7 @@
 import axios from "axios";
+import { API_URL } from "../config";
 
 export async function logIn(username: string, password: string) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const url = `${API_URL}/token`;
 
   const formData = new URLSearchParams();
@@ -23,17 +23,16 @@ export async function logIn(username: string, password: string) {
 }
 
 export async function signUp(username: string, password: string) {
-  const API_URL = import.meta.env.VITE_API_URL;
   const url = `${API_URL}/users`;
 
   const formData = {
-    username: username,
-    password: password,
+    username,
+    password,
   };
 
   const response = await axios.post<{ access_token: string }>(url, formData, {
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+      "Content-Type": "application/json",
     },
   });
 
