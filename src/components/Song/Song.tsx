@@ -12,6 +12,7 @@ interface Props {
   duration?: string;
   padding?: string;
   id?: number;
+  isFavourite?: boolean;
 }
 
 export default function Song({
@@ -22,6 +23,7 @@ export default function Song({
   duration = "2:25",
   padding = "1vw",
   id = 0,
+  isFavourite = false,
 }: Props) {
   return (
     <div
@@ -73,6 +75,8 @@ export default function Song({
         </SecondaryText>
         <LikeButton
           width="30vw"
+          songId={id}
+          enabled={isFavourite}
           onClick={() => {
             addSongToFavourites(id);
           }}
