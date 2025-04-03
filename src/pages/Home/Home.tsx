@@ -1,10 +1,11 @@
 import PrimaryText from "../../components/PrimaryText/PrimaryText";
 import Playlist from "../../components/Playlist/Playlist";
 import Song from "../../components/Song/Song";
-import { getAllSongs } from "../../services/api";
+import { getAllSongs, getFavouriteSongs } from "../../services/api";
 import "./Home.css";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatDuration } from "../../utils";
+import { SongType } from "../../types";
 
 export default function HomePage() {
   const recommendedPlaylists: { title: string }[] = [
@@ -23,15 +24,7 @@ export default function HomePage() {
     { title: "Playlist #13" },
   ];
 
-  const [recommendedSongs, setRecommendedSongs] = useState<
-    {
-      title: string;
-      id: number;
-      duration_seconds: number;
-      artist: { username: string; is_admin: boolean };
-    }[]
-  >([]);
-
+  const [recommendedSongs, setRecommendedSongs] = useState<SongType[]>([]);
   useEffect(() => {
     getAllSongs()
       .then((response) => {
@@ -41,6 +34,21 @@ export default function HomePage() {
         console.error("Failed to fetch songs:", error);
       });
   }, []);
+
+  const [favouriteSongs, setFavouriteSongs] = useState<SongType[]>([]);
+  useEffect(() => {
+    getFavouriteSongs()
+      .then((response) => {
+        setFavouriteSongs(response);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch songs:", error);
+      });
+  }, []);
+
+  const favouriteSongsIds = useMemo(() => {
+    return new Set(favouriteSongs.map((favouriteSong) => favouriteSong.id));
+  }, [favouriteSongs]);
 
   return (
     <div className="home">
@@ -77,6 +85,7 @@ export default function HomePage() {
             artist={`${song.artist.username}`}
             duration={`${formatDuration(song.duration_seconds)}`}
             id={song.id}
+            isFavourite={favouriteSongsIds.has(song.id)}
           />
         ))}
       </div>

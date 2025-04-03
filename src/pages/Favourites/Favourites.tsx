@@ -2,7 +2,7 @@ import PlaylistHeader from "../../components/PlaylistHeader/PlaylistHeader";
 import Line from "../../components/Line/Line";
 import Song from "../../components/Song/Song";
 import { getFavouriteSongs } from "../../services/api";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatDuration } from "../../utils";
 
 export default function FavouritesPage() {
@@ -14,7 +14,6 @@ export default function FavouritesPage() {
       artist: { username: string; is_admin: boolean };
     }[]
   >([]);
-
   useEffect(() => {
     getFavouriteSongs()
       .then((response) => {
@@ -59,6 +58,7 @@ export default function FavouritesPage() {
             artist={`${song.artist.username}`}
             duration={`${formatDuration(song.duration_seconds)}`}
             id={song.id}
+            isFavourite={true}
           />
         ))}
       </div>

@@ -1,18 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Search from "../../components/Search/Search";
-import { searchSongs } from "../../services/api";
+import { getFavouriteSongs, searchSongs } from "../../services/api";
 import Song from "../../components/Song/Song";
 import { formatDuration } from "../../utils";
+import { SongType } from "../../types";
 
 export default function SearchPage() {
-  const [songs, setSongs] = useState<
-    {
-      id: number;
-      title: string;
-      duration_seconds: number;
-      artist: { username: string; is_admin: boolean };
-    }[]
-  >([]);
+  const [songs, setSongs] = useState<SongType[]>([]);
+
+  const [favouriteSongs, setFavouriteSongs] = useState<SongType[]>([]);
+  useEffect(() => {
+    getFavouriteSongs()
+      .then((response) => {
+        setFavouriteSongs(response);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch songs:", error);
+      });
+  }, []);
+
+  const favouriteSongsIds = useMemo(() => {
+    return new Set(favouriteSongs.map((favouriteSong) => favouriteSong.id));
+  }, [favouriteSongs]);
 
   const [query, setQuery] = useState("");
 
@@ -62,6 +71,7 @@ export default function SearchPage() {
               artist={`${song.artist.username}`}
               duration={`${formatDuration(song.duration_seconds)}`}
               id={song.id}
+              isFavourite={favouriteSongsIds.has(song.id)}
             />
           ))
         ) : (
