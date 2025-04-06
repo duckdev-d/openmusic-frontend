@@ -67,10 +67,7 @@ export default function SearchPage() {
               coverWidth="2.5vw"
               width="80vw"
               padding="0.7vw"
-              title={song.title}
-              artist={`${song.artist.username}`}
-              duration={`${formatDuration(song.duration_seconds)}`}
-              id={song.id}
+              song={song}
               isFavourite={favouriteSongsIds.has(song.id)}
             />
           ))
