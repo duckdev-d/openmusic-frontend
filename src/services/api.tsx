@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../config";
+import { SongType } from "../types";
 
 export async function getAllSongs() {
   const url = `${API_URL}/songs`;
@@ -93,4 +94,25 @@ export async function searchSongs(query: string) {
   }
 
   return response.data;
+}
+
+export async function checkSongIsFavourite(songId: number) {
+  const url = `${API_URL}/users/favourite-songs`;
+  const jwt = localStorage.getItem("jwt");
+
+  const response = await axios.get(url, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+
+  if (!(response.status === 200)) {
+    throw new Error();
+  }
+
+  const favouriteSongs: SongType[] = response.data;
+  const favouriteSongsIds = new Set(favouriteSongs.map((song) => song.id));
+
+  return favouriteSongsIds.has(songId);
 }
