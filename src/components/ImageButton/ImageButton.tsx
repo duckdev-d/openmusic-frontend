@@ -7,6 +7,7 @@ interface Props {
   width: string;
   state?: "enabled" | "disabled";
   className?: string;
+  onClick?: () => void;
 }
 
 export default function ImageButton({
@@ -15,12 +16,16 @@ export default function ImageButton({
   width,
   state = "disabled",
   className = "",
+  onClick,
 }: Props) {
   const [image, setImage] = useState(
     state === "disabled" ? disabledImage : enabledImage
   );
 
   function handleButtonClick(e: React.MouseEvent) {
+    if (onClick) {
+      onClick();
+    }
     if (image === disabledImage) {
       setImage(enabledImage);
     } else {
