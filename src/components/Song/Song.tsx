@@ -3,30 +3,35 @@ import PrimaryText from "../PrimaryText/PrimaryText";
 import SecondaryText from "../SecondaryText/SecondaryText";
 import { addSongToFavourites } from "../../services/api";
 import "./Song.css";
+import { useSetAtom } from "jotai";
+import { currentAudioAtom, currentSongAtom } from "../../atoms";
+import { SongType } from "../../types";
+import { formatDuration } from "../../utils";
 
 interface Props {
   width?: string;
   coverWidth?: string;
-  title?: string;
-  artist?: string;
-  duration?: string;
+  song: SongType;
   padding?: string;
-  id?: number;
   isFavourite?: boolean;
 }
 
 export default function Song({
+  song,
   width = "10vw",
   coverWidth = "2vw",
-  title = "title",
-  artist = "artist",
-  duration = "2:25",
   padding = "1vw",
-  id = 0,
   isFavourite = false,
 }: Props) {
+  const setCurrentSong = useSetAtom(currentSongAtom);
+
+  function handleClick() {
+    setCurrentSong(song);
+  }
+
   return (
     <div
+      onClick={handleClick}
       className="song"
       style={{
         width: width,
@@ -56,8 +61,8 @@ export default function Song({
           gap: "10%",
         }}
       >
-        <PrimaryText size="1.2vw">{title}</PrimaryText>
-        <SecondaryText size="1vw">{artist}</SecondaryText>
+        <PrimaryText size="1.2vw">{song.title}</PrimaryText>
+        <SecondaryText size="1vw">{song.artist.username}</SecondaryText>
       </div>
 
       <div
@@ -71,14 +76,14 @@ export default function Song({
         }}
       >
         <SecondaryText className="song-duration" size="1vw">
-          {duration}
+          {formatDuration(song.duration_seconds)}
         </SecondaryText>
         <LikeButton
           width="30vw"
-          songId={id}
+          songId={song.id}
           enabled={isFavourite}
           onClick={() => {
-            addSongToFavourites(id);
+            addSongToFavourites(song.id);
           }}
         />
       </div>
