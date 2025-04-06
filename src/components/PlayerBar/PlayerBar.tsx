@@ -10,19 +10,48 @@ import volumeOn from "../../assets/volume-enabled.svg";
 import volumeOff from "../../assets/volume-disabled.svg";
 import Line from "../Line/Line";
 import LikeButton from "../LikeButton/LikeButton";
+import { useAtom, useAtomValue } from "jotai";
+import { currentAudioAtom, currentSongAtom } from "../../atoms";
+import { SongType } from "../../types";
+import { checkSongIsFavourite } from "../../services/api";
+import { formatDuration } from "../../utils";
+import { useEffect, useState } from "react";
+import { API_URL } from "../../config";
 
-interface Props {
-  title?: string;
-  artist?: string;
-  duration?: string;
-}
+export default function () {
+  const currentSong: SongType = useAtomValue(currentSongAtom);
+  const [currentAudio, setCurrentAudio] = useAtom(currentAudioAtom);
 
-export default function ({
-  title = "Best Song",
-  artist = "Great Artist",
-  duration = "2:25",
-}: Props) {
-  return (
+  useEffect(() => {
+    if (currentSong.id === 0) {
+      return;
+    }
+    if (currentAudio) {
+      currentAudio.pause();
+    }
+    setCurrentAudio(new Audio(`${API_URL}/songs/${currentSong.id}`));
+  }, [currentSong]);
+
+  useEffect(() => {
+    currentAudio?.play();
+  }, [currentAudio]);
+
+  let [currentSongIsFavourite, setCurrentSongIsFavourite] = useState(false);
+  useEffect(() => {
+    checkSongIsFavourite(currentSong.id).then((result) => {
+      setCurrentSongIsFavourite(result);
+    });
+  }, []);
+
+  function toggleAudio() {
+    if (currentAudio?.paused) {
+      currentAudio.play();
+    } else {
+      currentAudio.pause();
+    }
+  }
+
+  return currentSong.id !== 0 ? (
     <div
       className="player-bar"
       style={{
@@ -44,9 +73,11 @@ export default function ({
         <Cover width="2.5vw" />
         <div className="title-artist">
           <PrimaryText size="1vw" mBottom="0.2vw">
-            {title}
+            {currentSong.title}
           </PrimaryText>
-          <SecondaryText size="0.7vw">{artist}</SecondaryText>
+          <SecondaryText size="0.7vw">
+            {currentSong.artist.username}
+          </SecondaryText>
         </div>
       </div>
       <div
@@ -70,6 +101,8 @@ export default function ({
             enabledImage={playOn}
             disabledImage={playOff}
             width="2.5vw"
+            state="enabled"
+            onClick={toggleAudio}
           />
           <ImageButton
             enabledImage={swipeRight}
@@ -87,7 +120,9 @@ export default function ({
         >
           <SecondaryText size="0.5vw">0:11</SecondaryText>
           <Line width="13vw" height="0.5vh" borderRadius="5px" />
-          <SecondaryText size="0.5vw">{duration}</SecondaryText>
+          <SecondaryText size="0.5vw">
+            {formatDuration(currentSong.duration_seconds)}
+          </SecondaryText>
         </div>
       </div>
       <div
@@ -98,7 +133,11 @@ export default function ({
           alignItems: "center",
         }}
       >
-        <LikeButton width="35vw" />
+        <LikeButton
+          songId={currentSong.id}
+          enabled={currentSongIsFavourite}
+          width="35vw"
+        />
         <ImageButton
           enabledImage={volumeOn}
           disabledImage={volumeOff}
@@ -106,6 +145,27 @@ export default function ({
           state="enabled"
         />
       </div>
+    </div>
+  ) : (
+    <div
+      className="player-bar"
+      style={{
+        position: "absolute",
+        background: "#2F2F2F",
+        opacity: "0.95",
+        width: "45vw",
+        height: "4.6vw",
+        padding: "0.8vw 1.5vw",
+        borderRadius: "50px",
+        bottom: "3vw",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <SecondaryText size="1vw">
+        Click on any song to start listening
+      </SecondaryText>
     </div>
   );
 }
