@@ -81,10 +81,7 @@ export default function HomePage() {
             coverWidth="3vw"
             width="42.5vw"
             padding="0.5vw"
-            title={song.title}
-            artist={`${song.artist.username}`}
-            duration={`${formatDuration(song.duration_seconds)}`}
-            id={song.id}
+            song={song}
             isFavourite={favouriteSongsIds.has(song.id)}
           />
         ))}
