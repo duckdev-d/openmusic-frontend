@@ -15,7 +15,13 @@ export default function PrimaryText({
 }: Props) {
   return (
     <div className="text">
-      <p style={{ fontSize: size, fontWeight: weight, marginBottom: mBottom }}>
+      <p
+        style={{
+          fontSize: size,
+          fontWeight: weight,
+          marginBottom: mBottom,
+        }}
+      >
         {children}
       </p>
     </div>
