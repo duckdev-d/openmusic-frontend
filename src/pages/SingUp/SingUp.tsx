@@ -18,10 +18,11 @@ function SignUpPage() {
 
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
-    signUp(username, password);
-    logIn(username, password);
-    navigate("/home");
+    signUp(username, password).then(() => {
+      logIn(username, password).then(() => {
+        navigate("/home");
+      });
+    });
   }
 
   const [username, setUsername] = useState("");
