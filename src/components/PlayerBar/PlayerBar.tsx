@@ -14,7 +14,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { currentAudioAtom, currentSongAtom } from "../../atoms";
 import { SongType } from "../../types";
 import { checkSongIsFavourite } from "../../services/api";
-import { formatDuration } from "../../utils";
+import { formatDuration, formatSongTitle } from "../../utils";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../config";
 
@@ -68,12 +68,18 @@ export default function () {
     >
       <div
         className="left"
-        style={{ display: "flex", alignItems: "center", gap: "0.5vw" }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5vw",
+          flexGrow: 1,
+          flexBasis: 0,
+        }}
       >
         <Cover width="2.5vw" />
         <div className="title-artist">
           <PrimaryText size="1vw" mBottom="0.2vw">
-            {currentSong.title}
+            {formatSongTitle(currentSong.title)}
           </PrimaryText>
           <SecondaryText size="0.7vw">
             {currentSong.artist.username}
@@ -86,11 +92,17 @@ export default function () {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          flexGrow: 1,
+          flexBasis: 0,
         }}
       >
         <div
           className="controls"
-          style={{ display: "flex", alignItems: "center" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
           <ImageButton
             enabledImage={swipeLeft}
@@ -116,6 +128,7 @@ export default function () {
             display: "flex",
             alignItems: "center",
             gap: "0.5vw",
+            justifyContent: "center",
           }}
         >
           <SecondaryText size="0.5vw">0:11</SecondaryText>
@@ -131,6 +144,9 @@ export default function () {
           display: "flex",
           gap: "1.3vw",
           alignItems: "center",
+          justifyContent: "center",
+          flexGrow: 1,
+          flexBasis: 0,
         }}
       >
         <LikeButton
