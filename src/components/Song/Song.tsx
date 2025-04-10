@@ -7,6 +7,7 @@ import { useSetAtom } from "jotai";
 import { currentAudioIsPlayingAtom, currentSongAtom } from "../../atoms";
 import { SongType } from "../../types";
 import { formatDuration } from "../../utils";
+import { motion } from "framer-motion";
 
 interface Props {
   width?: string;
@@ -32,7 +33,11 @@ export default function Song({
   }
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      whileTap={{ scale: 0.99, transition: { duration: 0.1 } }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
       onClick={handleClick}
       className="song"
       style={{
@@ -89,6 +94,6 @@ export default function Song({
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
