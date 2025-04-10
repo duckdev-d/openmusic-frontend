@@ -7,6 +7,7 @@ import favouritesActive from "../../assets/favourites-primary.svg";
 import favouritesDisabled from "../../assets/favourites-secondary.svg";
 import playlistsActive from "../../assets/playlists-primary.svg";
 import playlistsDisabled from "../../assets/playlists-secondary.svg";
+import logout from "../../assets/logout.svg";
 import "./Menu.css";
 
 interface Props {
@@ -15,6 +16,10 @@ interface Props {
   height: string;
   borderRadius: string;
   gap: string;
+}
+
+function clearJwt() {
+  localStorage.removeItem("jwt");
 }
 
 export default function Menu({
@@ -37,6 +42,12 @@ export default function Menu({
       activeIcon: playlistsActive,
       disabledIcon: playlistsDisabled,
     },
+    {
+      path: "/login",
+      activeIcon: logout,
+      disabledIcon: logout,
+      onClick: clearJwt,
+    },
   ];
 
   return (
@@ -49,18 +60,21 @@ export default function Menu({
         gap: gap,
       }}
     >
-      {menuItems.map(({ path, activeIcon, disabledIcon }) => (
-        <NavLink draggable="false" key={path} to={path}>
-          {({ isActive }) => (
-            <img
-              src={isActive ? activeIcon : disabledIcon}
-              style={{ width: iconWidth }}
-              alt=""
-              draggable="false"
-            />
-          )}
-        </NavLink>
-      ))}
+      {menuItems.map(
+        ({ path, activeIcon, disabledIcon, onClick = undefined }) => (
+          <NavLink draggable="false" key={path} to={path}>
+            {({ isActive }) => (
+              <img
+                onClick={onClick}
+                src={isActive ? activeIcon : disabledIcon}
+                style={{ width: iconWidth }}
+                alt=""
+                draggable="false"
+              />
+            )}
+          </NavLink>
+        )
+      )}
     </div>
   );
 }
