@@ -11,7 +11,11 @@ import volumeOff from "../../assets/volume-disabled.svg";
 import Line from "../Line/Line";
 import LikeButton from "../LikeButton/LikeButton";
 import { useAtom, useAtomValue } from "jotai";
-import { currentAudioAtom, currentSongAtom } from "../../atoms";
+import {
+  currentAudioAtom,
+  currentAudioIsPlayingAtom,
+  currentSongAtom,
+} from "../../atoms";
 import { SongType } from "../../types";
 import { checkSongIsFavourite } from "../../services/api";
 import { formatDuration, formatSongTitle } from "../../utils";
@@ -20,6 +24,9 @@ import { API_URL } from "../../config";
 
 export default function () {
   const currentSong: SongType = useAtomValue(currentSongAtom);
+  const [currentAudioIsPlaying, setCurrentAudioIsPlaying] = useAtom(
+    currentAudioIsPlayingAtom
+  );
   const [currentAudio, setCurrentAudio] = useAtom(currentAudioAtom);
 
   useEffect(() => {
@@ -33,6 +40,9 @@ export default function () {
   }, [currentSong]);
 
   useEffect(() => {
+    if (!currentAudio) {
+      return;
+    }
     currentAudio?.play();
   }, [currentAudio]);
 
@@ -44,10 +54,12 @@ export default function () {
   }, []);
 
   function toggleAudio() {
-    if (currentAudio?.paused) {
-      currentAudio.play();
+    if (currentAudioIsPlaying) {
+      currentAudio?.pause();
+      setCurrentAudioIsPlaying(false);
     } else {
-      currentAudio.pause();
+      currentAudio?.play();
+      setCurrentAudioIsPlaying(true);
     }
   }
 
@@ -113,7 +125,7 @@ export default function () {
             enabledImage={playOn}
             disabledImage={playOff}
             width="2.5vw"
-            state="enabled"
+            state={currentAudioIsPlaying ? "enabled" : "disabled"}
             onClick={toggleAudio}
           />
           <ImageButton

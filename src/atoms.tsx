@@ -11,4 +11,5 @@ export const currentSongAtom = atom<SongType>({
   },
 });
 
-export const currentAudioAtom = atom<HTMLAudioElement>(new Audio());
+export const currentAudioAtom = atom<HTMLAudioElement | undefined>(undefined);
+export const currentAudioIsPlayingAtom = atom<boolean>(false);

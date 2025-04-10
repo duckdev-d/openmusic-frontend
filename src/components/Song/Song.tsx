@@ -4,7 +4,7 @@ import SecondaryText from "../SecondaryText/SecondaryText";
 import { addSongToFavourites } from "../../services/api";
 import "./Song.css";
 import { useSetAtom } from "jotai";
-import { currentAudioAtom, currentSongAtom } from "../../atoms";
+import { currentAudioIsPlayingAtom, currentSongAtom } from "../../atoms";
 import { SongType } from "../../types";
 import { formatDuration } from "../../utils";
 
@@ -24,9 +24,11 @@ export default function Song({
   isFavourite = false,
 }: Props) {
   const setCurrentSong = useSetAtom(currentSongAtom);
+  const setCurrentAudioIsPlaying = useSetAtom(currentAudioIsPlayingAtom);
 
   function handleClick() {
     setCurrentSong(song);
+    setCurrentAudioIsPlaying(true);
   }
 
   return (

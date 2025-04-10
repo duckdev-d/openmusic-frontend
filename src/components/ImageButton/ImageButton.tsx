@@ -40,7 +40,12 @@ export default function ImageButton({
       onClick={handleButtonClick}
       style={{ cursor: "pointer" }}
     >
-      <img draggable="false" src={image} alt="" style={{ width: width }} />
+      <img
+        draggable="false"
+        src={state === "enabled" ? enabledImage : disabledImage}
+        alt=""
+        style={{ width: width }}
+      />
     </div>
   );
 }
