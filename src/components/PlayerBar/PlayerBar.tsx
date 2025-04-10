@@ -15,6 +15,7 @@ import {
   currentAudioAtom,
   currentAudioIsPlayingAtom,
   currentSongAtom,
+  currentAudioIsMutedAtom,
 } from "../../atoms";
 import { SongType } from "../../types";
 import { checkSongIsFavourite } from "../../services/api";
@@ -28,6 +29,9 @@ export default function () {
     currentAudioIsPlayingAtom
   );
   const [currentAudio, setCurrentAudio] = useAtom(currentAudioAtom);
+  const [currentAudioIsMuted, setCurrentAudioIsMuted] = useAtom(
+    currentAudioIsMutedAtom
+  );
 
   useEffect(() => {
     if (currentSong.id === 0) {
@@ -60,6 +64,16 @@ export default function () {
     } else {
       currentAudio?.play();
       setCurrentAudioIsPlaying(true);
+    }
+  }
+
+  function toggleAudioMute() {
+    if (currentAudioIsMuted && currentAudio) {
+      currentAudio.muted = false;
+      setCurrentAudioIsMuted(false);
+    } else if (currentAudio) {
+      currentAudio.muted = true;
+      setCurrentAudioIsMuted(true);
     }
   }
 
@@ -170,7 +184,8 @@ export default function () {
           enabledImage={volumeOn}
           disabledImage={volumeOff}
           width="2.2vw"
-          state="enabled"
+          state={currentAudioIsMuted ? "disabled" : "enabled"}
+          onClick={toggleAudioMute}
         />
       </div>
     </div>
