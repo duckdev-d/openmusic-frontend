@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import Search from "../../components/Search/Search";
 import { getFavouriteSongs, searchSongs } from "../../services/api";
 import Song from "../../components/Song/Song";
-import { formatDuration } from "../../utils";
 import { SongType } from "../../types";
 
 export default function SearchPage() {

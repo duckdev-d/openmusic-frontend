@@ -22,7 +22,7 @@ export default function ImageButton({
     state === "enabled" ? enabledImage : disabledImage
   );
 
-  function handleButtonClick(e: React.MouseEvent) {
+  function handleButtonClick() {
     if (onClick) {
       onClick();
     }

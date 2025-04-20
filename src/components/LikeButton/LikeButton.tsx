@@ -8,8 +8,8 @@ import {
 
 interface Props {
   width: string;
-  songId: number;
-  enabled: boolean;
+  songId?: number;
+  enabled?: boolean;
   visibility?: "visible" | "hidden";
   onClick?: () => void;
 }
@@ -17,7 +17,7 @@ interface Props {
 export default function LikeButton({
   width,
   visibility = "visible",
-  songId,
+  songId = 0,
   enabled = false,
 }: Props) {
   const [image, setImage] = useState(enabled ? heartOn : heartOff);
@@ -30,7 +30,7 @@ export default function LikeButton({
     }
   }
 
-  function handleClick(e: React.MouseEvent) {
+  function handleClick() {
     if (image === heartOff) {
       addSongToFavourites(songId);
     } else {

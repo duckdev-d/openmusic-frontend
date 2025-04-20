@@ -4,7 +4,6 @@ import Song from "../../components/Song/Song";
 import { getAllSongs, getFavouriteSongs } from "../../services/api";
 import "./Home.css";
 import { useEffect, useMemo, useState } from "react";
-import { formatDuration } from "../../utils";
 import { SongType } from "../../types";
 
 export default function HomePage() {

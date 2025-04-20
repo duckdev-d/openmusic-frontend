@@ -2,8 +2,7 @@ import PlaylistHeader from "../../components/PlaylistHeader/PlaylistHeader";
 import Line from "../../components/Line/Line";
 import Song from "../../components/Song/Song";
 import { getFavouriteSongs } from "../../services/api";
-import { useEffect, useMemo, useState } from "react";
-import { formatDuration } from "../../utils";
+import { useEffect, useState } from "react";
 
 export default function FavouritesPage() {
   const [favouriteSongs, setFavouriteSongs] = useState<
