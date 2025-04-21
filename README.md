@@ -27,6 +27,8 @@
     
 * Run the container
   ```bash
+  git clone https://github.com/duckdev-d/openmusic-frontend.git
+  cd openmusic-frontend
   docker build -t openmusic-frontend-image .
   docker run -p 80:80 openmusic-frontend-image
 
