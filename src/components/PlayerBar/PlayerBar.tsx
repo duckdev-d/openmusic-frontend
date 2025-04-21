@@ -172,7 +172,7 @@ export default function () {
           gap: "1.4vw",
           alignItems: "center",
           justifyContent: "right",
-          flexGrow: 1,
+          flexGrow: 0.8,
           flexBasis: 0,
         }}
       >
