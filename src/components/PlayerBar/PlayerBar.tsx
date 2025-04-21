@@ -168,9 +168,10 @@ export default function () {
         className="right"
         style={{
           display: "flex",
-          gap: "1.3vw",
+          marginRight: "0.8vw",
+          gap: "1.4vw",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "right",
           flexGrow: 1,
           flexBasis: 0,
         }}
