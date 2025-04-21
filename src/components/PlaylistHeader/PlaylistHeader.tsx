@@ -21,7 +21,7 @@ export default function PlaylistHeader({
   numberOfSongs,
   secondaryFontSize,
   includeLikeButton = false,
-  likeButtonWidth = "40vw",
+  likeButtonWidth = "2vw",
   marginBottom = "0",
 }: Props) {
   return (

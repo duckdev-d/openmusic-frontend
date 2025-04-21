@@ -45,7 +45,7 @@ export default function LikeButton({
       onClick={handleClick}
       style={{ cursor: "pointer", visibility: visibility }}
     >
-      <img draggable="false" width={width} src={image} alt="" />
+      <img draggable="false" src={image} alt="" style={{width: width}}/>
     </div>
   );
 }

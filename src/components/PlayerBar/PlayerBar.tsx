@@ -178,7 +178,7 @@ export default function () {
         <LikeButton
           songId={currentSong.id}
           enabled={currentSongIsFavourite}
-          width="35vw"
+          width="2vw"
         />
         <ImageButton
           enabledImage={volumeOn}

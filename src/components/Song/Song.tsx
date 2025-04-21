@@ -86,7 +86,7 @@ export default function Song({
           {formatDuration(song.duration_seconds)}
         </SecondaryText>
         <LikeButton
-          width="30vw"
+          width="2vw"
           songId={song.id}
           enabled={isFavourite}
           onClick={() => {
