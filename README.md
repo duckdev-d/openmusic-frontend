@@ -15,7 +15,7 @@
 
 ## How to run the app
 > [!NOTE]
-> You have to have docker and docker compose installed
+> You have to have docker and docker compose-installed
 
 > [!WARNING]
 > You have to run the [API](https://github.com/duckdev-d/openmusic-backend) and set environment variables first
